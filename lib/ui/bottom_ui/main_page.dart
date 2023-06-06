@@ -6,6 +6,8 @@ import 'package:uzum/ui/bottom_ui/tabs/home_page.dart';
 import 'package:uzum/ui/bottom_ui/tabs/search_page.dart';
 import 'package:uzum/ui/bottom_ui/tabs/shopping_basket_page.dart';
 
+import '../../components/constants/mediaqueries.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -26,7 +28,45 @@ class _MainPageState extends State<MainPage> {
       AccountPage()
     ];
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white, elevation: 0),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        actions: [
+          Container(
+            child: Center(
+                child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 12),
+              width: m_w(context) * 0.9,
+              height: m_w(context) * 0.08,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.grey.withOpacity(0.3)),
+              child: Center(
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.search,
+                      color: Colors.grey,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(top: 4),
+                      height: 60,
+                      width: m_w(context) * 0.8,
+                      child: const Center(
+                        child: TextField(
+                          decoration: InputDecoration(
+                              hintText: 'Mahsulot va toifalarni qidirish',
+                              border: InputBorder.none),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )),
+          )
+        ],
+      ),
       body: pages[currentPage],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
